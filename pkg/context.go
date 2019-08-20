@@ -1,2 +1,2 @@
-package go_code_collections
+package pkg
 
