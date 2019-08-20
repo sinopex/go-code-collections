@@ -1,0 +1,12 @@
+bin/
+storage/
+local/
+.cache/
+.idea/
+.DS_Store/
+*.test
+\#*\#
+.vscode
+table-comment.txt
+eticket
+.env
