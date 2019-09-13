@@ -63,7 +63,7 @@ func (t *Task) run() {
 		case <-t.ctx.Done():
 
 			fmt.Println("will stop")
-			go t.stop()
+			go t.stop() // 这里一定要异步，否则会死锁
 
 			fmt.Println("prepare to shutdown...")
 			return
