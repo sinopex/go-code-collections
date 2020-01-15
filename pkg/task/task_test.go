@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 	"testing"
+	"time"
 )
 
 type PrintJob struct {
@@ -28,7 +29,7 @@ func registerSignal(cancel context.CancelFunc) {
 }
 
 func TestTask_Push(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1)
 
 	done := make(chan struct{})
 	go registerSignal(cancel)
