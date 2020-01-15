@@ -1,4 +1,4 @@
-package tickerutil
+package example
 
 import (
 	"time"
