@@ -46,6 +46,7 @@ func TestTask_Push(t *testing.T) {
 			} else {
 				return
 			}
+			time.Sleep(time.Millisecond * 100)
 		}
 	}()
 
