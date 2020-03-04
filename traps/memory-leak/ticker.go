@@ -17,10 +17,8 @@ func WrongTicker() {
 		}
 		log.Println("stopped")
 	}()
-	time.Sleep(3 * time.Second)
 	log.Println("stopping ticker")
 	ticker.Stop()
-	time.Sleep(3 * time.Second)
 }
 
 func GoodTicker() {
@@ -38,8 +36,6 @@ func GoodTicker() {
 			}
 		}
 	}()
-	time.Sleep(3 * time.Second)
 	log.Println("stopping ticker")
 	done <- struct{}{}
-	time.Sleep(3 * time.Second)
 }

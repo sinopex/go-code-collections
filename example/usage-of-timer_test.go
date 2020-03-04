@@ -7,7 +7,7 @@ import (
 )
 
 func TestUsageOfTimer(t *testing.T) {
-	c := UsageOfTimer(func() { fmt.Println(time.Now()) }, time.Second)
-	time.Sleep(time.Second * 2)
+	c := UsageOfTimer(func() { fmt.Println(time.Now()) }, time.Millisecond*3)
+	time.Sleep(time.Millisecond * 10)
 	close(c)
 }

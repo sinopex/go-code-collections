@@ -52,12 +52,12 @@ func (u *BadUserInfoFetcher) Get(id int64) []UserInfo {
 }
 
 func (u *BadUserInfoFetcher) getDataFromGoogle(id int64) UserInfo {
-	time.Sleep(time.Second * 10)
+	time.Sleep(time.Millisecond * 10)
 	return UserInfo{Data: id, Err: nil}
 }
 
 func (u *BadUserInfoFetcher) getDataFromTwitter(id int64) UserInfo {
-	time.Sleep(time.Millisecond * 10)
+	time.Sleep(time.Millisecond * 20)
 	return UserInfo{Data: id, Err: nil}
 }
 

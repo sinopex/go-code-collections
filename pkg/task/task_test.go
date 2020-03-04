@@ -30,7 +30,7 @@ func registerSignal(cancel context.CancelFunc) {
 }
 
 func TestTask_Push(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*300)
 
 	done := make(chan struct{})
 	go registerSignal(cancel)
@@ -47,7 +47,7 @@ func TestTask_Push(t *testing.T) {
 			} else {
 				return
 			}
-			time.Sleep(time.Millisecond * 200)
+			time.Sleep(time.Millisecond * 100)
 		}
 	}()
 
