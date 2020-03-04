@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"sync/atomic"
 	"syscall"
 	"testing"
 	"time"
@@ -35,14 +36,14 @@ func TestTask_Push(t *testing.T) {
 	go registerSignal(cancel)
 
 	task := New(ctx, done, 10)
-	n := 1
+	var n int32 = 1
 
 	// 模拟不停的发送数据
 	go func() {
 		for {
-			b := task.Push(&PrintJob{Id: n})
+			b := task.Push(&PrintJob{Id: int(n)})
 			if b {
-				n++
+				atomic.AddInt32(&n, 1)
 			} else {
 				return
 			}
@@ -52,5 +53,5 @@ func TestTask_Push(t *testing.T) {
 
 	<-done
 	// 打印一共发送了多少条任务
-	fmt.Printf("total send Id=%d\n", n-1)
+	fmt.Printf("total send Id=%d\n", atomic.LoadInt32(&n)-1)
 }
