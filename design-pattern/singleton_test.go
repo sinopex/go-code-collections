@@ -3,7 +3,7 @@ package design_pattern
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/sinopex/go-code-collections/pkg/assert"
 )
 
 func TestGetInstance(t *testing.T) {

@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+var done = make(chan bool)
+
 func WrongHttpBodyClose() {
 	defer func() { done <- true }()
 	// perform a web request
@@ -35,7 +37,8 @@ func GoodHttpBodyClose() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer resp.Body.Close() // close it on defer
+	defer resp.Body.Close()
+	// close it on defer
 	// check the status code of the response
 	// if it returns ok, in our example,
 	// we dont care about the body, but if

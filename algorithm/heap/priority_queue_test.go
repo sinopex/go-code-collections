@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/sinopex/go-code-collections/pkg/assert"
 )
 
 const defaultMaxSize = 100

@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/sinopex/go-code-collections/pkg/assert"
 )
 
 // 堆排序
