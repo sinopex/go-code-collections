@@ -6,6 +6,11 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+type Node struct {
+	Val      int
+	Children []*Node
+}
+
 func print(tree *TreeNode) []int {
 	result := make([]int, 0)
 	_print(tree, &result)
