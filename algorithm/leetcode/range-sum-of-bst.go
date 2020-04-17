@@ -12,5 +12,16 @@ func rangeSumBST(root *TreeNode, L int, R int) int {
 		res += root.Val
 	}
 
-	return res + rangeSumBST(root.Left, L, R) + rangeSumBST(root.Right, L, R)
+	// 合理运用二叉搜索树的特性，进行剪枝
+	// 如果节点值比目标左值小，则只用搜索右边
+	if root.Val >= L {
+		res += rangeSumBST(root.Left, L, R)
+	}
+
+	// 同理，如果节点值比目标右值大，则只用搜索左边
+	if root.Val <= R {
+		res += rangeSumBST(root.Right, L, R)
+	}
+
+	return res
 }
