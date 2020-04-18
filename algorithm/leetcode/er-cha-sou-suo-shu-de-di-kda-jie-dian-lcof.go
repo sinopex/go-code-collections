@@ -12,6 +12,29 @@ func kthLargest(root *TreeNode, k int) int {
 	return h.Top()
 }
 
+func kthLargestIterate(root *TreeNode, k int) int {
+	var fn func(root *TreeNode, k int)
+	var n int
+	var count int
+	fn = func(root *TreeNode, k int) {
+		if root.Right != nil {
+			fn(root.Right, k)
+		}
+
+		count++
+		if k == count {
+			n = root.Val
+			return
+		}
+
+		if root.Left != nil {
+			fn(root.Left, k)
+		}
+	}
+	fn(root, k)
+	return n
+}
+
 func _kthLargest(root *TreeNode, h *MinHeap) {
 	if root == nil {
 		return
