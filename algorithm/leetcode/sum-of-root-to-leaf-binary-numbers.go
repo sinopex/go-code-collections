@@ -3,25 +3,25 @@
 package leetcode
 
 func sumRootToLeaf(root *TreeNode) int {
-	total := 0
-	_sumRootToLeaf(root, &total, 0)
-	return total
-}
-func _sumRootToLeaf(root *TreeNode, total *int, start int) {
-	if root == nil {
-		return
+	// 如果这里 没有重新 给这个全局变量 赋值，下一次运行时，这个全局变量保留上次运行的值
+	var sumRootToLeafRes int
+	var fn func(root *TreeNode, n int)
+	fn = func(root *TreeNode, n int) {
+		n <<= 1
+		n += root.Val
+		if root.Left == nil && root.Right == nil {
+			sumRootToLeafRes += n
+			return
+		}
+
+		if root.Left != nil {
+			fn(root.Left, n)
+		}
+		if root.Right != nil {
+			fn(root.Right, n)
+		}
 	}
 
-	if root.Val == 0 {
-		start = start << 1
-	} else {
-		start = start<<1 + 1
-	}
-
-	if root.Left == nil && root.Right == nil {
-		*total += start % (1e9 + 7)
-	}
-
-	_sumRootToLeaf(root.Left, total, start)
-	_sumRootToLeaf(root.Right, total, start)
+	fn(root, 0)
+	return sumRootToLeafRes
 }
