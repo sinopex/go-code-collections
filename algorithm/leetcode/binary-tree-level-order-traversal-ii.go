@@ -34,3 +34,37 @@ func levelOrderBottom(root *TreeNode) [][]int {
 
 	return ret
 }
+
+func levelOrderBottomDFS(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+
+	ret := make([][]int, 0)
+	_levelOrderBottomDFS(root, &ret, 0)
+
+	resultLength := len(ret)
+	left, right := 0, resultLength-1
+	for left < right {
+		ret[left], ret[right] = ret[right], ret[left]
+		left++
+		right--
+	}
+
+	return ret
+}
+
+func _levelOrderBottomDFS(root *TreeNode, ret *[][]int, level int) {
+	if root == nil {
+		return
+	}
+
+	if len(*ret) > level {
+		(*ret)[level] = append((*ret)[level], root.Val)
+	} else {
+		*ret = append(*ret, []int{root.Val})
+	}
+
+	_levelOrderBottomDFS(root.Left, ret, level+1)
+	_levelOrderBottomDFS(root.Right, ret, level+1)
+}
