@@ -2,6 +2,13 @@
 // https://leetcode-cn.com/problems/path-sum-iii/
 package leetcode
 
+func pathSum(root *TreeNode, sum int) int {
+	if root == nil {
+		return 0
+	}
+	return PathFrom(root, sum) + pathSum(root.Left, sum) + pathSum(root.Right, sum)
+}
+
 func PathFrom(root *TreeNode, sum int) int {
 	if root == nil {
 		return 0
@@ -17,11 +24,4 @@ func PathFrom(root *TreeNode, sum int) int {
 	cnt += PathFrom(root.Right, sum-root.Val)
 
 	return cnt
-}
-
-func pathSum(root *TreeNode, sum int) int {
-	if root == nil {
-		return 0
-	}
-	return pathSum(root, sum) + pathSum(root.Left, sum) + pathSum(root.Right, sum)
 }
