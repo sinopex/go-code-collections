@@ -42,6 +42,11 @@ func isCousins(root *TreeNode, x int, y int) bool {
 			}
 		}
 
+		// 如果两个节点不在一层，肯定不是堂兄，到此可以结束
+		if (vx && !vy) || (vy && !vx) {
+			return false
+		}
+
 		//  这一层两个节点全部出现，比较父节点是否为同一个即可
 		if vx && vy {
 			return px != py
