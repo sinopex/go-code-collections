@@ -7,7 +7,8 @@ import (
 )
 
 func findMode(root *TreeNode) []int {
-	values := _findMode(root)
+	var values = make(map[int]int)
+	_findMode(root, values)
 	var num []int
 
 	max := -math.MaxInt64
@@ -27,20 +28,12 @@ func findMode(root *TreeNode) []int {
 	return num
 }
 
-func _findMode(root *TreeNode) map[int]int {
+func _findMode(root *TreeNode, values map[int]int) {
 	if root == nil {
-		return map[int]int{}
+		return
 	}
 
-	values := make(map[int]int)
-	values[root.Val] = 1
-	for n, v := range _findMode(root.Left) {
-		values[n] += v
-	}
-
-	for n, v := range _findMode(root.Right) {
-		values[n] += v
-	}
-
-	return values
+	values[root.Val] += 1
+	_findMode(root.Left, values)
+	_findMode(root.Right, values)
 }
