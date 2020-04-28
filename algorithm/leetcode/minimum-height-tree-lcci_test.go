@@ -14,7 +14,7 @@ func Test_sortedArrayToBST(t *testing.T) {
 		{
 			name:  "test",
 			input: []int{-10, -3, 0, 5, 9},
-			want:  []int{0, -3, 9, -10, 5},
+			want:  []int{-10, -3, 0, 5, 9},
 		},
 	}
 	for _, tt := range tests {
