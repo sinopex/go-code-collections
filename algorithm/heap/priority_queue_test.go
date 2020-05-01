@@ -39,7 +39,6 @@ func TestPriorityQueue_Insert(t *testing.T) {
 	for _, v := range dataset {
 		assert.Equal(t, n, pq.len)
 		peek, err := pq.Peek()
-		fmt.Printf("%d,", peek.Priority)
 		assert.Nil(t, err)
 		assert.Equal(t, v, peek.Priority)
 
@@ -48,5 +47,4 @@ func TestPriorityQueue_Insert(t *testing.T) {
 		assert.Equal(t, v, message.Priority)
 		n--
 	}
-	fmt.Println()
 }

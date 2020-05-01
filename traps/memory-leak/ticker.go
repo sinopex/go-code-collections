@@ -4,8 +4,6 @@ package memory_leak
 // 而Ticker.C是只读类型，无法手动关闭，所以需要借助外力终止goroutine
 
 import (
-	"fmt"
-	"log"
 	"time"
 )
 
@@ -13,11 +11,8 @@ func WrongTicker() {
 	ticker := time.NewTicker(1 * time.Second)
 	go func() {
 		for _ = range ticker.C {
-			log.Println("tick")
 		}
-		log.Println("stopped")
 	}()
-	log.Println("stopping ticker")
 	ticker.Stop()
 }
 
@@ -29,13 +24,10 @@ func GoodTicker() {
 		for {
 			select {
 			case <-ticker.C:
-				fmt.Println("tick")
 			case <-done:
-				fmt.Println("done")
 				return
 			}
 		}
 	}()
-	log.Println("stopping ticker")
 	done <- struct{}{}
 }

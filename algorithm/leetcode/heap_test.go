@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"math/rand"
 	"testing"
 	"time"
@@ -14,6 +13,5 @@ func TestHeap(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		value := r.Intn(100)
 		h.Push(value)
-		fmt.Printf("push=%d,top=%d\n", value, h.Top())
 	}
 }

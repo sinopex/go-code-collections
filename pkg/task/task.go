@@ -2,7 +2,6 @@ package task
 
 import (
 	"context"
-	"fmt"
 	"sync"
 	"time"
 )
@@ -26,13 +25,11 @@ func New(ctx context.Context, done chan struct{}, max int) *Task {
 		// 正常时干活
 		task.run()
 		// 收到退出信号时，处理剩余未完的任务
-		fmt.Printf("handling remaining %d jobs\n", len(task.jobChan))
 		for job := range task.jobChan {
 			job.Do()
 		}
 		// 佯装等待几秒，再退出
 		for i := 3; i >= 1; i-- {
-			fmt.Printf("shutdown in %d second\n", i)
 			time.Sleep(time.Second)
 		}
 		task.done <- struct{}{}
@@ -61,11 +58,7 @@ func (t *Task) run() {
 			}()
 
 		case <-t.ctx.Done():
-
-			fmt.Println("will stop")
 			go t.stop() // 这里一定要异步，否则会死锁
-
-			fmt.Println("prepare to shutdown...")
 			return
 		}
 	}
@@ -77,7 +70,6 @@ func (t *Task) stop() {
 	defer mu.Unlock()
 	t.running = false
 	close(t.jobChan)
-	fmt.Println("stopped")
 }
 
 func (t *Task) Push(job Job) bool {

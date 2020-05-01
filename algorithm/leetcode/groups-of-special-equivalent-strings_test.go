@@ -14,32 +14,32 @@ func Test_numSpecialEquivGroups(t *testing.T) {
 		want int
 	}{
 		{
-			name: "test",
+			name: "test1",
 			args: args{
 				A: []string{"a", "b", "c", "a", "c", "c"},
 			},
 			want: 3,
 		},
 		{
-			name: "test",
+			name: "test2",
 			args: args{
 				A: []string{"aa", "bb", "ab", "ba"},
 			},
 			want: 4,
 		},
 		{
-			name: "test",
+			name: "test3",
 			args: args{
 				A: []string{"abc", "acb", "bac", "bca", "cab", "cba"},
 			},
 			want: 3,
 		},
 		{
-			name: "test",
+			name: "test4",
 			args: args{
 				A: []string{"abcd", "cdab", "cbad", "xyzz", "zzxy", "zzyx"},
 			},
-			want: 2,
+			want: 3,
 		},
 	}
 	for _, tt := range tests {

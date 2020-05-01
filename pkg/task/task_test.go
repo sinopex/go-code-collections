@@ -2,7 +2,6 @@ package task
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"os/signal"
 	"sync/atomic"
@@ -16,15 +15,13 @@ type PrintJob struct {
 }
 
 func (p *PrintJob) Do() {
-	fmt.Printf("n=%d\n", p.Id)
 }
 
 // 接收退出信号
 func registerSignal(cancel context.CancelFunc) {
 	ch := make(chan os.Signal)
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM, syscall.SIGABRT, syscall.SIGKILL)
-	for s := range ch {
-		fmt.Printf("receive signal :%v\n", s)
+	for _ = range ch {
 		cancel()
 	}
 }
@@ -52,6 +49,4 @@ func TestTask_Push(t *testing.T) {
 	}()
 
 	<-done
-	// 打印一共发送了多少条任务
-	fmt.Printf("total send Id=%d\n", atomic.LoadInt32(&n)-1)
 }

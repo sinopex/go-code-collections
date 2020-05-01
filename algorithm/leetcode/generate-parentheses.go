@@ -2,10 +2,6 @@
 // https://leetcode-cn.com/problems/generate-parentheses/
 package leetcode
 
-import (
-	"fmt"
-)
-
 func generateParenthesis(n int) []string {
 	var ret []string
 	_generateParenthesis(n, n, "", &ret)
@@ -14,7 +10,6 @@ func generateParenthesis(n int) []string {
 
 func _generateParenthesis(left, right int, p string, ret *[]string) {
 	if left == 0 && right == 0 {
-		fmt.Println("p", p)
 		*ret = append(*ret, p)
 		return
 	}
