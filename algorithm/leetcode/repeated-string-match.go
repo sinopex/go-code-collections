@@ -9,7 +9,7 @@ import (
 func repeatedStringMatch(A string, B string) int {
 	L := len(B) / len(A)
 
-	for i := 0; i < L; i++ {
+	for i := 0; i <= 2; i++ {
 		if strings.Contains(strings.Repeat(A, L+i), B) {
 			return L + i
 		}

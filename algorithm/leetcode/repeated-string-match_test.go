@@ -15,8 +15,9 @@ func Test_repeatedStringMatch(t *testing.T) {
 		want int
 	}{
 		{name: "test1", args: args{A: "abcd", B: "cdabcdab"}, want: 3},
-		{name: "test1", args: args{A: "abcd", B: "cdabcab"}, want: -1},
-		{name: "test1", args: args{A: "abcd", B: "abcd"}, want: 1},
+		{name: "test2", args: args{A: "abcd", B: "cdabcab"}, want: -1},
+		{name: "test3", args: args{A: "abcd", B: "abcd"}, want: 1},
+		{name: "test3", args: args{A: "abc", B: "cabcabca"}, want: 4},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
