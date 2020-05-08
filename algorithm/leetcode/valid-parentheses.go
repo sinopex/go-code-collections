@@ -3,15 +3,15 @@
 package leetcode
 
 func isValid(s string) bool {
-	var stack = make([]rune, 0)
+	var stack = make([]byte, 0)
 	var n int
-	var dict = map[rune]rune{
+	var dict = map[byte]byte{
 		'[': ']',
 		'(': ')',
 		'{': '}',
 	}
 
-	for _, r := range s {
+	for _, r := range []byte(s) {
 		// 如果是开始标签，则进栈
 		if _, ok := dict[r]; ok {
 			stack = append(stack, r)
