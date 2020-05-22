@@ -22,3 +22,21 @@ func sortedSquares(A []int) []int {
 
 	return result
 }
+
+func sortedSquares2(A []int) []int {
+	n := len(A)
+	result := make([]int, n)
+	for i, j, k := 0, n-1, n-1; i <= j; {
+		// 左边大
+		if math.Abs(float64(A[i])) >= math.Abs(float64(A[j])) {
+			result[k] = A[i] * A[i]
+			i++
+		} else {
+			result[k] = A[j] * A[j]
+			j--
+		}
+		k--
+	}
+
+	return result
+}
