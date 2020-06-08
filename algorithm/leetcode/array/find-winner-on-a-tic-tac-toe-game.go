@@ -64,16 +64,8 @@ func tictactoe(moves [][]int) string {
 			}
 		}
 
-		pendingNum := 0
-		for _, line := range lines {
-			if line.status == StatusPending || line.status == StatusEmpty {
-				pendingNum++
-			}
-		}
-
-		// 如果所有直线都不存在可能，并且已经没有棋子可走
-		// 则出现和棋
-		if pendingNum == 0 && count == 9 {
+		// 如果没有棋子可走
+		if count == 9 {
 			return "Draw"
 		}
 
