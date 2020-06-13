@@ -3,6 +3,19 @@
 package array
 
 func isOneBitCharacter(bits []int) bool {
+	if len(bits) <= 1 {
+		return true
+	}
+	counter := 0
+	for i := len(bits) - 2; i > -1; i-- {
+		if bits[i] == 0 {
+			break
+		}
+		counter++
+	}
+	return counter&1 == 0
+}
+func isOneBitCharacter2(bits []int) bool {
 	i := 0
 	for i < len(bits)-1 {
 		i += bits[i] + 1
