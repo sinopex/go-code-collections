@@ -1,6 +1,6 @@
 package linklist
 
 type ListNode struct {
-	Val  int
-	Next *ListNode
+	Val  int       `json:"val"`
+	Next *ListNode `json:"next"`
 }
